@@ -5,3 +5,15 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+main {
+img:hover {
+  opacity: 0;
+}
+
+img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+}
