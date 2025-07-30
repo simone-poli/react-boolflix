@@ -6,16 +6,25 @@ import CountryFlag from 'react-country-flag'
 function App() {
   const [movies, setMovies] = useState([])
   const [movieTitle, setMovieTitle] = useState("")
+  const [tvTitle, setTvTitle] = useState("")
 
 
   function searchMovie() {
 
-    const url = `https://api.themoviedb.org/3/search/multi?api_key=${import.meta.env.VITE_API_KEY}&query=${movieTitle}`
-    fetch(url)
+    const urlMovie = `https://api.themoviedb.org/3/search/movie?api_key=${import.meta.env.VITE_API_KEY}&query=${movieTitle}`
+    fetch(urlMovie)
       .then(res => res.json())
       .then(data => {
         console.log(data)
         setMovies(data.results)
+      })
+    
+      const urlTv = `https://api.themoviedb.org/3/search/tv?api_key=${import.meta.env.VITE_API_KEY}&query=${movieTitle}`
+    fetch(urlTv)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        setTvTitle(data.results)
       })
   }
 
