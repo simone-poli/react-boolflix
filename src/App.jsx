@@ -76,8 +76,20 @@ function App() {
                     />
                   )}
                   ({movie.original_language}) <br />
-                  Vote: {movie.vote_average} <br />
-                  Image: <img src= {`https://image.tmdb.org/t/p/w342${movie.poster_path}`} alt="" />
+                  Vote:
+                  {(() => {
+                    const vote = Math.ceil(movie.vote_average / 2);
+                    return (
+                      <>
+                        <i className={`fas fa-star ${vote >= 1 ? 'text-warning' : 'text-muted'}`}></i>
+                        <i className={`fas fa-star ${vote >= 2 ? 'text-warning' : 'text-muted'}`}></i>
+                        <i className={`fas fa-star ${vote >= 3 ? 'text-warning' : 'text-muted'}`}></i>
+                        <i className={`fas fa-star ${vote >= 4 ? 'text-warning' : 'text-muted'}`}></i>
+                        <i className={`fas fa-star ${vote >= 5 ? 'text-warning' : 'text-muted'}`}></i>
+                      </>
+                    );
+                  })()} <br/>
+                  Image: <img src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`} alt="" />
                 </li>
               )
             })}
