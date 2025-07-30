@@ -6,25 +6,16 @@ import CountryFlag from 'react-country-flag'
 function App() {
   const [movies, setMovies] = useState([])
   const [movieTitle, setMovieTitle] = useState("")
-  const [tvTitle, setTvTitle] = useState("")
 
 
   function searchMovie() {
 
-    const urlMovie = `https://api.themoviedb.org/3/search/movie?api_key=${import.meta.env.VITE_API_KEY}&query=${movieTitle}`
-    fetch(urlMovie)
+    const url = `https://api.themoviedb.org/3/search/multi?api_key=${import.meta.env.VITE_API_KEY}&query=${movieTitle}`
+    fetch(url)
       .then(res => res.json())
       .then(data => {
         console.log(data)
         setMovies(data.results)
-      })
-    
-      const urlTv = `https://api.themoviedb.org/3/search/tv?api_key=${import.meta.env.VITE_API_KEY}&query=${movieTitle}`
-    fetch(urlTv)
-      .then(res => res.json())
-      .then(data => {
-        console.log(data)
-        setTvTitle(data.results)
       })
   }
 
@@ -51,11 +42,10 @@ function App() {
     <>
       <header className="bg-dark">
         <div className="container d-flex justify-content-between align-items-center">
-          <img src="https://fontmeme.com/permalink/250730/3c20dfd41f94290e511eca21370fea4c.png" alt="" />
+          <h1 className="text-danger">Boolflix</h1>
           <form onSubmit={handleSubmit}>
             <div className="container d-flex justify-content-center align-items-center">
               <input
-                className="p-2"
                 type="text"
                 placeholder='Search title'
                 value={movieTitle}
@@ -78,7 +68,7 @@ function App() {
                   <div className="col" key={movie.id}>
                     <div className="card border-0">
                       <div>
-                        <img className=" position-relative object-fit-cover z-1 pt-3" src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`} alt="" />
+                        <img className="position-relative object-fit-cover z-1 pt-3" src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`} alt="" />
                       </div>
                       <div className="position-absolute top-0 left-50 pt-3">
                         <b>Title</b>: {movie.title || movie.name} <br />
@@ -101,7 +91,7 @@ function App() {
                           <i className={`fas fa-star ${vote >= 5 ? 'text-warning' : 'text-muted'}`}></i>
                         </>
                         <br />
-                        <p className='text-break'> <b>Overview</b>: {movie.overview}</p>
+                        <b>Overview</b>: {movie.overview}
                       </div>
                     </div>
                   </div>
