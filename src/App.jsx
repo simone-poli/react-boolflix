@@ -10,7 +10,7 @@ function App() {
 
   function searchMovie() {
 
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${import.meta.env.VITE_API_KEY}&query=${movieTitle}`
+    const url = `https://api.themoviedb.org/3/search/multi?api_key=${import.meta.env.VITE_API_KEY}&query=${movieTitle}`
     fetch(url)
       .then(res => res.json())
       .then(data => {
@@ -65,8 +65,8 @@ function App() {
               const countryCode = languageFlags(movie.original_language);
               return (
                 <li key={movie.id} className="mb-3">
-                  Title: {movie.title} <br />
-                  Original Title: {movie.original_title} <br />
+                  Title: {movie.title || movie.name} <br />
+                  Original Title: {movie.original_title || movie.original_name} <br />
                   Language:{' '}
                   {countryCode && (
                     <CountryFlag
