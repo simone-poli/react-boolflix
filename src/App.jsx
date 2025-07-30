@@ -76,7 +76,8 @@ function App() {
                     />
                   )}
                   ({movie.original_language}) <br />
-                  <strong>Vote:</strong> {movie.vote_average}
+                  Vote: {movie.vote_average} <br />
+                  Image: <img src= {`https://image.tmdb.org/t/p/w342${movie.poster_path}`} alt="" />
                 </li>
               )
             })}
